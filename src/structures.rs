@@ -86,22 +86,28 @@ impl ToString for WeatherApiResponse {
             s.push_str(&format!("Weather for Location: {}\n", location));
         }
         if let Some(sunrise) = &self.sunrise {
-            s.push_str(&format!("Sunrise: {}\n", sunrise));
+            s.push_str(&format!(
+                "Sunrise: {}\n",
+                chrono::NaiveDateTime::from_timestamp_opt(*sunrise as i64, 0).unwrap()
+            ));
         }
         if let Some(sunset) = &self.sunset {
-            s.push_str(&format!("Sunset: {}\n", sunset));
+            s.push_str(&format!(
+                "Sunset: {}\n",
+                chrono::NaiveDateTime::from_timestamp_opt(*sunset as i64, 0).unwrap()
+            ));
         }
         if let Some(temp) = &self.temp {
-            s.push_str(&format!("Temperature: {}\n", temp));
+            s.push_str(&format!("Temperature: {}C\n", temp));
         }
         if let Some(feels_like) = &self.feels_like {
-            s.push_str(&format!("Feels like: {}\n", feels_like));
+            s.push_str(&format!("Feels like: {}C\n", feels_like));
         }
         if let Some(pressure) = &self.pressure {
-            s.push_str(&format!("Pressure: {}\n", pressure));
+            s.push_str(&format!("Pressure: {}mb\n", pressure));
         }
         if let Some(humidity) = &self.humidity {
-            s.push_str(&format!("Humidity: {}\n", humidity));
+            s.push_str(&format!("Humidity: {}%\n", humidity));
         }
 
         s
