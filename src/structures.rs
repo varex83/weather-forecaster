@@ -3,6 +3,8 @@ use std::fmt::{Display, Formatter};
 /// Error type for the project
 #[derive(Clone, PartialEq, Debug)]
 pub enum ProjectError {
+    /// Error returned when location is not found
+    LocationNotFound,
     /// Error returned when no data provider is found
     NoProviderFound,
     /// Serialization error

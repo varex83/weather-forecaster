@@ -19,6 +19,10 @@ impl OpenWeather {
 
         let resp = reqwest::blocking::get(url)?.json::<Vec<Location>>()?;
 
+        if resp.is_empty() {
+            return Err(ProjectError::LocationNotFound);
+        }
+
         Ok(resp[0].clone())
     }
 
